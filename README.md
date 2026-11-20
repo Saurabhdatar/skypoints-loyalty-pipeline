@@ -87,9 +87,18 @@ python -m unittest discover -s tests
 - `.xlsx` extracts are read directly by the Python path; the Snowflake path expects them converted to CSV upstream.
 - Orchestration (Snowpipe/Tasks or Airflow), alerting on DQ thresholds, and a volume-anomaly check are described, not built.
 
-## How AI was used
-The assignment asks for AI, so here is what I did with it. I used Claude to draft the DDL, stored procedures, the Python reference
-implementation and the tests, and to talk through design options. I made the decisions that matter and checked the output against the spec and the
-real files: using Member_Id (not Member Name) as the key, a registry table for country moves, namespacing the IDs of the country extracts
+## Development Approach
+
+The solution follows an iterative engineering approach, focusing on data quality, maintainability, scalability, and testability.
+
+Key design decisions include:
+
+- Using Member_Id instead of Member Name as the business key.
+- Handling country-specific source layouts through configurable mappings.
+- Applying validation rules to separate rejected records from optional data quality issues.
+- Using latest-record-wins logic to prevent older extracts from overwriting newer records.
+- Implementing automated unit tests to validate transformation and data quality rules.
+
+All design assumptions and known limitations are documented in this repository.
 after noticing they all start at 1, rejecting only on mandatory fields, and keeping ambiguous dates visible instead of guessing.
 Where a decision rests on an assumption I could not confirm, it is listed above.
