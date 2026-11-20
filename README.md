@@ -100,5 +100,3 @@ Key design decisions include:
 - Implementing automated unit tests to validate transformation and data quality rules.
 
 All design assumptions and known limitations are documented in this repository.
-after noticing they all start at 1, rejecting only on mandatory fields, and keeping ambiguous dates visible instead of guessing.
-Where a decision rests on an assumption I could not confirm, it is listed above.
